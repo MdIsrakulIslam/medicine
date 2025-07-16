@@ -96,7 +96,7 @@ const Emergency = () => {
 
                 {/* Relation */}
                 <div className="mb-4">
-                  <Label htmlFor="relation" className="mb-2">Relation with contact person</Label>
+                  <Label htmlFor="relation" className="mb-2">Relation with the contact person</Label>
                   <div className="relative bg-white rounded-lg">
                     <Input
                       id="relation"
@@ -117,7 +117,7 @@ const Emergency = () => {
                   </div>
                   <Button
                     variant="outline"
-                    className="bg-[#F5F5F5] flex items-center gap-2"
+                    className="bg-[#225CE4] text-white flex items-center gap-2"
                   >
                     Next
                   </Button>

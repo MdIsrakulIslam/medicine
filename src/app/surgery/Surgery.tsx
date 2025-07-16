@@ -9,6 +9,11 @@ import { Label } from "@/components/ui/label";
 
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { CiPhone } from "react-icons/ci";
+import { LiaHospitalAltSolid } from "react-icons/lia";
+import { SlCalender } from "react-icons/sl";
+import { IoTimeOutline } from "react-icons/io5";
+import { GiHeartOrgan } from "react-icons/gi";
+import { IoIosArrowDown } from "react-icons/io";
 
 const Surgery = () => {
   const [form, setForm] = useState({
@@ -20,8 +25,10 @@ const Surgery = () => {
   });
 
   return (
-    <div className="bg-gray-50 md:bg-white p-4 md:p-20 min-h-screen">
-      <div className="md:flex gap-5">
+    <div className=" md:bg-white p-4 md:p-20 ">
+      
+
+        <div className="md:flex gap-5 ">
         {/* Left Side Image for large devices */}
         <div className="md:w-1/2 relative">
           <div className="hidden md:block h-full relative rounded-2xl overflow-hidden">
@@ -29,7 +36,7 @@ const Surgery = () => {
               src="/twodoc.png"
               alt="medical"
               layout="fill"
-              objectFit="cover"
+              objectFit=""
               className="rounded-2xl"
             />
           </div>
@@ -47,7 +54,8 @@ const Surgery = () => {
         </div>
 
         {/* Right Form Section */}
-        <div className="md:w-1/2 flex items-center justify-center">
+        
+          <div className="md:w-1/2 flex items-center justify-center relative">
           <div className="w-full max-w-md">
             <div className="bg-white rounded-xl overflow-hidden w-[300px] mx-auto md:w-full md:mx-0">
               <div className="p-6 space-y-5 md:space-y-6 md:p-8
@@ -77,13 +85,19 @@ const Surgery = () => {
                   <div className="mb-4">
                     <Label htmlFor="surgeryType" className="mb-2">Surgery Type</Label>
                     <div className="relative bg-white rounded-lg">
+                        <span className="absolute left-3 top-2.5 text-gray-400">
+                        <GiHeartOrgan />
+                      </span>
                       <Input
                         id="surgeryType"
                         type="text"
-                        placeholder="Select surgery type"
+                        placeholder="     Select surgery type"
                         value={form.type}
-                        onChange={(e) => setForm({ ...form, type: e.target.value })}
-                      />
+                        onChange={(e) => setForm({ ...form, type: e.target.value })}/>
+
+                        <span className="absolute left-89 top-2.5 text-gray-400">
+                        <IoIosArrowDown />
+                      </span>
                     </div>
                   </div>
 
@@ -108,15 +122,17 @@ const Surgery = () => {
 
                   <div className="grid grid-cols-2 gap-4">
                     <Button
-                      className="w-full text-black bg-white border"
+                      className="w-full text-[#8C8C8C] bg-white border"
                       onClick={() => alert("Pick date")}
                     >
+                      <SlCalender />
                       Select Date
                     </Button>
                     <Button
-                      className="w-full text-black bg-white border"
+                      className="w-full text-[#8C8C8C] bg-white border"
                       onClick={() => alert("Pick time")}
                     >
+                      <IoTimeOutline />
                       Select Time
                     </Button>
                   </div>
@@ -126,7 +142,7 @@ const Surgery = () => {
                     <Label htmlFor="hospital" className="mb-2">Hospital</Label>
                     <div className="relative bg-white rounded-lg">
                       <span className="absolute left-3 top-2.5 text-gray-400">
-                        <CiPhone />
+                        <LiaHospitalAltSolid />
                       </span>
                       <Input
                         id="hospital"
@@ -156,7 +172,26 @@ const Surgery = () => {
             </div>
           </div>
         </div>
-      </div>  
+
+        
+
+       
+      
+
+     
+
+      </div>
+
+
+
+
+
+
+
+
+
+       
+      
     </div>
   );
 };

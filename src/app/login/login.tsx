@@ -115,19 +115,19 @@ const Login = () => {
                   </div>
 
                   {/* Login Button */}
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700 mt-28">
                     Log in
                   </Button>
 
                   {/* Google Sign-In */}
-                  <Button variant="outline" className="w-full bg-[#F5F5F5] flex items-center gap-2">
+                  <Button variant="outline" className="w-full bg-[#F5F5F5] flex items-center gap-2 ">
                     <FaGoogle /> Google sign in
                   </Button>
 
                   {/* Sign up link */}
                   <p className="text-center text-sm">
                     Don’t have an account?{" "}
-                    <a href="#" className="text-blue-600 font-medium">
+                    <a href="/signup" className="text-blue-600 font-medium">
                       Sign up
                     </a>
                   </p>

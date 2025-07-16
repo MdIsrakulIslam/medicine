@@ -161,7 +161,7 @@ const Signup = () => {
 
                   {/* Sign up button */}
                   <Button 
-                    className="w-full bg-blue-600 hover:bg-blue-700"
+                    className="w-full bg-[#225CE4] hover:bg-blue-700"
                     onClick={onSignup}
                     disabled={buttonDisabled}
                   >
@@ -176,7 +176,7 @@ const Signup = () => {
                   {/* Sign in link */}
                   <p className="text-center text-sm">
                     Already have an account?{" "}
-                    <a href="#" className="text-blue-600 font-medium">
+                    <a href="/login" className="text-blue-600 font-medium">
                       Sign in
                     </a>
                   </p>

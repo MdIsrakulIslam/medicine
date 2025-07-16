@@ -173,7 +173,7 @@ const Personalinfo = () => {
                   </div>
                   <Button
                     variant="outline"
-                    className="bg-[#F5F5F5] flex items-center gap-2"
+                    className="bg-[#225CE4] text-white flex items-center gap-2"
                   >
                     Next
                   </Button>
