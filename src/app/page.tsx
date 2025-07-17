@@ -1,103 +1,80 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useSelector } from "react-redux";
+import { RootState } from "./redux/store";
+import StatCard from "../components/StatCard";
+import JourneyLineChart from "../components/LineChart";
+import Notifications from "../components/Notification";
+import Sidebar from "../components/Sidebar";
+import Header from "../components/Header";
+
+export default function Dashboard() {
+  const { users, patients, providers, flaggedCases, chartData, notifications } =
+    useSelector((state: RootState) => state.stats);
+
+  const stats = [
+    {
+      title: "Total User",
+      count: users,
+      change: "+12% from last month",
+      color: "text-green-500",
+    },
+    {
+      title: "Total Patient",
+      count: patients,
+      change: "+8% from last month",
+      color: "text-green-500",
+    },
+    {
+      title: "Total Healthcare Provider",
+      count: providers,
+      change: "+15% from last month",
+      color: "text-green-500",
+    },
+    {
+      title: "Total Flagged Cases",
+      count: flaggedCases,
+      change: "+22% from last month",
+      color: "text-red-500",
+    },
+  ];
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="flex min-h-screen">
+      <Sidebar />
+      <div className="flex-1 p-6 ">
+        <Header />
+        <div className="bg-slate-50 p-5">
+          <div className="flex justify-between">
+          <h1 className="text-2xl font-bold mb-4">Dashboard Overview</h1>
+          <div className="text-right">
+            <p className="text-sm font-medium">January 2025</p>
+            <p className="text-xs text-gray-400">Admin</p>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6 ">
+          {stats.map((stat, idx) => (
+            <StatCard key={idx} {...stat} />
+          ))}
+        </div>
+
+        <div className=" grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="md:col-span-2">
+            <div className="bg-white p-4 rounded-xl shadow mb-6">
+              <h2 className="text-lg font-semibold mb-2">
+                How many patient are completing their journey in LAMARE app!
+              </h2>
+              <JourneyLineChart data={chartData} />
+            </div>
+          </div>
+
+          <div className="md:col-span-1 md:h-full">
+            <Notifications logs={notifications} />
+          </div>
+        </div>
+        </div>
+      </div>
     </div>
   );
 }
