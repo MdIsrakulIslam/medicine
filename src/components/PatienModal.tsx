@@ -1,7 +1,12 @@
 // components/PatientModal.tsx
 "use client";
 
+import { BsTelephone } from 'react-icons/bs';
 import { Patient } from '../app/redux/pateientsSlice';
+import { MdOutlineEmail } from 'react-icons/md';
+import { FaFontAwesomeFlag } from 'react-icons/fa';
+import { GoPerson } from 'react-icons/go';
+import { FiAlertTriangle } from 'react-icons/fi';
 
 interface PatientModalProps {
   patient: Patient;
@@ -28,14 +33,22 @@ export default function PatientModal({ patient, isOpen, onClose }: PatientModalP
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 w-full max-w-md mx-4">
+    <div className="fixed inset-0 bg-white bg-opacity-50  flex items-center justify-center z-50">
+      <div className="bg-white rounded-lg p-6 w-full max-w-md mx-4 shadow-xl">
         <div className="flex justify-between items-start mb-4">
           <div>
             <h3 className="text-lg font-semibold">Patient Profile</h3>
-            <div className="flex items-center gap-2 mt-1">
-              <span className="text-gray-600">{patient.name}</span>
-              <span className={`px-2 py-1 rounded-full text-xs ${getStatusColor(patient.status)}`}>
+            <div className="flex items-center  gap-2 mt-1">
+              <div className='flex items-center gap-2'>
+               <div>
+                 <GoPerson className=' border bg-[#DBEAFE] inline-block rounded-full text-3xl text-[#2563EB]' />
+               </div>
+               <div>
+                 <span className="text-gray-600">{patient.name}</span><br />
+                <span className="text-gray-600 text-sm">{patient.email}</span>
+               </div>
+              </div>
+              <span className={`px-2 py-1 flex justify-end rounded-full text-xs ${getStatusColor(patient.status)}`}>
                 {patient.status}
               </span>
             </div>
@@ -51,10 +64,15 @@ export default function PatientModal({ patient, isOpen, onClose }: PatientModalP
         {patient.status === 'Flagged' && patient.flaggedCase && (
           <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-red-600 text-sm">⚠️</span>
-              <span className="text-red-800 font-medium text-sm">Flagged Case</span>
+              <div>
+                <span className="text-red-600 text-sm"><FiAlertTriangle /></span>
+              </div>
+              <div>
+                <span className="text-red-800 font-medium text-sm">Flagged Case</span>
+              <p className="text-red-700 text-sm">{patient.flaggedCase}</p>
+              </div>
             </div>
-            <p className="text-red-700 text-sm">{patient.flaggedCase}</p>
+            
           </div>
         )}
 
@@ -62,30 +80,29 @@ export default function PatientModal({ patient, isOpen, onClose }: PatientModalP
           <div>
             <h4 className="font-medium text-gray-700 mb-2">Personal Information</h4>
             <div className="space-y-2 text-sm">
-              <div><span className="text-gray-500">DOB:</span> Feb-07-74</div>
-              <div><span className="text-gray-500">Gender:</span> Male</div>
-              <div><span className="text-gray-500">Height:</span> 5'10"</div>
-              <div><span className="text-gray-500">Weight:</span> 180 lbs</div>
-              <div><span className="text-gray-500">Email:</span> {patient.email}</div>
+              <div className='text-gray-500'><span className="text-gray-500">DOB:</span> Feb-07-74</div>
+              <div className='text-gray-500'><span className="text-gray-500">Gender:</span> Male</div>
+               <div className='flex items-center gap-0.5 text-gray-500'><span className="text-gray-500"><BsTelephone /></span> +1(555987-6543)</div>
+              <div className='flex items-center gap-0.5 text-gray-500'><span className="text-gray-500"><MdOutlineEmail className='mt-1' /></span> {patient.email}</div>
             </div>
           </div>
           
           <div>
             <h4 className="font-medium text-gray-700 mb-2">Surgery Details</h4>
             <div className="space-y-2 text-sm">
-              <div><span className="text-gray-500">Type:</span> {patient.surgeryType}</div>
-              <div><span className="text-gray-500">Date:</span> {patient.surgeryDate}</div>
-              <div><span className="text-gray-500">Surgeon:</span> Dr. Lisa Thompson</div>
-              <div><span className="text-gray-500">Last Active:</span> {patient.lastActive}</div>
+              <div className='text-gray-500'><span className="text-gray-500">Type:</span> {patient.surgeryType}</div>
+              <div className='text-gray-500'><span className="text-gray-500">Date:</span> {patient.surgeryDate}</div>
+              <div className='text-gray-500'><span className="text-gray-500">Surgeon:</span> Dr. Lisa Thompson</div>
+              <div className='text-gray-500'><span className="text-gray-500">Last Active:</span> {patient.lastActive}</div>
             </div>
           </div>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-2 ">
           <h4 className="font-medium text-gray-700 mb-3">Recovery Metrics</h4>
-          <div className="space-y-3">
-            <div>
-              <div className="flex justify-between text-sm mb-1">
+          <div className="space-y-3 flex justify-between">
+            <div className='bg-[#F9FAFB] p-2'>
+              <div className="flex justify-between text-sm mb-1 text-gray-500">
                 <span>Pain Level</span>
                 <span>{patient.painLevel}/10</span>
               </div>
@@ -97,8 +114,8 @@ export default function PatientModal({ patient, isOpen, onClose }: PatientModalP
               </div>
             </div>
             
-            <div>
-              <div className="flex justify-between text-sm mb-1">
+            <div className='bg-[#F9FAFB]'>
+              <div className="flex justify-between text-sm mb-1 text-gray-500">
                 <span>Mobility Level</span>
                 <span>{patient.mobilityLevel}/10</span>
               </div>
@@ -110,8 +127,8 @@ export default function PatientModal({ patient, isOpen, onClose }: PatientModalP
               </div>
             </div>
             
-            <div>
-              <div className="flex justify-between text-sm mb-1">
+            <div className='bg-[#F9FAFB]'>
+              <div className="flex justify-between text-sm mb-1 text-gray-500">
                 <span>Mood Level</span>
                 <span>{patient.moodLevel}/10</span>
               </div>
@@ -125,15 +142,16 @@ export default function PatientModal({ patient, isOpen, onClose }: PatientModalP
           </div>
         </div>
 
-        <div className="flex justify-end gap-2">
-          <button className="px-4 py-2 text-blue-600 hover:bg-blue-50 rounded">
-            📱 Vlog Case
-          </button>
+        <div>
+          <hr />
+          
           <button
+          
             onClick={onClose}
-            className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
+            className=" p-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 flex items-center justify-start gap-1 mt-4"
           >
-            Close
+            <FaFontAwesomeFlag />
+           Unflag case
           </button>
         </div>
       </div>

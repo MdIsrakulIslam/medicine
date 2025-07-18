@@ -2,9 +2,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-
 import { BsPersonCheckFill } from 'react-icons/bs'
-import { CiSettings } from 'react-icons/ci'
 import { FaRegChartBar } from 'react-icons/fa6'
 import { IoSettingsOutline } from 'react-icons/io5'
 import { LuHouse } from 'react-icons/lu'
@@ -12,11 +10,11 @@ import { MdOutlinePersonOutline } from 'react-icons/md'
 
 function Sidebar() {
   const pathname = usePathname()
-
+  
   const navLinks = [
     { href: '/', label: 'Home', icon: <LuHouse /> },
     { href: '/patients', label: 'Patients', icon: <MdOutlinePersonOutline /> },
-    { href: '/providers', label: 'Healthcare Providers', icon: <BsPersonCheckFill /> },
+    { href: '/providers', label: 'Healthcare professionals', icon: <BsPersonCheckFill /> },
     { href: '/reports', label: 'Reports & Analytics', icon: <FaRegChartBar /> },
     { href: '/profile', label: 'Profile Settings', icon: <IoSettingsOutline /> },
   ]

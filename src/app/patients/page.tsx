@@ -8,6 +8,7 @@ import Sidebar from '../../components/Sidebar';
 import PatientModal from '../../components/PatienModal';
 import AddPatientModal from '../../components/AddPatientModal';
 import { Patient } from '../redux/pateientsSlice';
+import { CiCalendar } from 'react-icons/ci';
 
 export default function PatientsPage() {
   const { patients, totalPatients, recoveredCount, flaggedCount, activeCount } = useSelector((state: RootState) => state.patients);
@@ -25,7 +26,7 @@ export default function PatientsPage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Recovered': return 'bg-green-100 text-green-800';
-      case 'Flagged': return 'bg-red-100 text-red-800';
+      case 'Flagged': return 'bg-[#FF5555] text-white';
       case 'Active': return 'bg-blue-100 text-blue-800';
       default: return 'bg-gray-100 text-gray-800';
     }
@@ -63,8 +64,15 @@ export default function PatientsPage() {
         <div className="bg-white p-4 rounded-lg shadow mb-6">
           <div className="flex justify-between items-center">
             <div>
-              <h2 className="text-lg font-semibold">Patient management ({totalPatients})</h2>
-              <div className="flex items-center gap-4 mt-2">
+              <h2 className="text-3xl font-semibold">Patient management ({totalPatients})</h2>
+              
+            </div>
+            <div className=" flex items-center gap-2">
+              <div>
+                
+              <p className=" text-blck  border-2 px-4 py-2 rounded-md hover:bg-blue-700 flex items-center gap-2"> <CiCalendar />January 2025</p>
+              </div>
+              <div className="flex items-center gap-4">
                 <button 
                   onClick={() => setIsAddModalOpen(true)}
                   className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 flex items-center gap-2"
@@ -73,35 +81,52 @@ export default function PatientsPage() {
                 </button>
               </div>
             </div>
-            <div className="text-right">
-              <p className="text-sm text-gray-600">January 2025</p>
-            </div>
           </div>
         </div>
 
         {/* Filters */}
         <div className="bg-white p-4 rounded-lg shadow mb-6">
-          <div className="flex gap-4 items-center">
-            <div className="flex-1">
+           <h1 className='p-2'>Search</h1>
+          <div className="flex gap-4 items-center justify-between">
+           <div className="flex gap-6 items-center">
               <input
+              
                 type="text"
                 placeholder="Search by name..."
+                
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-[400px] px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                
               />
+             <p className='w-[100px] text-[#8C8C8C]'>or filter by</p>
             </div>
-            <select
+            
+              <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option>All Status</option>
               <option>Active</option>
               <option>Recovered</option>
               <option>Flagged</option>
             </select>
-            <button className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50">
+            
+
+            <select
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">Select Surgery Type</option>
+              <option value="Knee Replacement">Knee Replacement</option>
+              <option value="Hip Replacement">Hip Replacement</option>
+              <option value="Shoulder Surgery">Shoulder Surgery</option>
+              <option value="Spine Surgery">Spine Surgery</option>
+              <option value="Other">Other</option>
+            </select>
+            <button className="w-2xs  px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50">
               Clear Filters
             </button>
           </div>
@@ -112,11 +137,11 @@ export default function PatientsPage() {
           <table className="w-full">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Surgery Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Surgery Date</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Active</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">Name</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">Surgery Type</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">Surgery Date</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">Status</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">Last Active</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -160,27 +185,7 @@ export default function PatientsPage() {
           </table>
         </div>
 
-        {/* Status Summary */}
-        <div className="mt-6 bg-white p-4 rounded-lg shadow">
-          <div className="flex gap-6">
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 bg-gray-400 rounded-full"></span>
-              <span className="text-sm text-gray-600">All Status ({totalPatients})</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 bg-green-500 rounded-full"></span>
-              <span className="text-sm text-gray-600">Recovered ({recoveredCount})</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 bg-red-500 rounded-full"></span>
-              <span className="text-sm text-gray-600">Flagged ({flaggedCount})</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 bg-blue-500 rounded-full"></span>
-              <span className="text-sm text-gray-600">Active ({activeCount})</span>
-            </div>
-          </div>
-        </div>
+       
       </div>
 
       {/* Modals */}
