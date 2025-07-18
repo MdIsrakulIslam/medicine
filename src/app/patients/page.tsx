@@ -40,28 +40,22 @@ export default function PatientsPage() {
   });
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen ">
       <Sidebar />
       
-      <div className="flex-1 p-6">
+      <div className="flex-1 p-6 bg-gray-50">
         {/* Header */}
-        <div className="bg-white p-4 rounded-lg shadow mb-6">
+        <div className=" p-4 bg-white mb-6">
           <div className="flex justify-between items-start">
             <div>
               <h1 className="text-xl font-semibold">Hi Rashed Khan</h1>
               <p className="text-sm text-gray-500">Welcome back! Here's what's happening with your Lamare mobile app.</p>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-gray-600">Rashed Khan</span>
-              <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm">
-                RK
-              </div>
-            </div>
-          </div>
+           </div>
         </div>
 
         {/* Patient Management Header */}
-        <div className="bg-white p-4 rounded-lg shadow mb-6">
+        <div className=" p-4 mb-6 ">
           <div className="flex justify-between items-center">
             <div>
               <h2 className="text-3xl font-semibold">Patient management ({totalPatients})</h2>

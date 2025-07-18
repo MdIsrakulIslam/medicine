@@ -69,7 +69,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="md:col-span-1 md:h-full">
+          <div className="md:col-span-1">
             <Notifications logs={notifications} />
           </div>
         </div>
