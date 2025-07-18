@@ -120,9 +120,9 @@ const Login = () => {
                   </Button>
 
                   {/* Google Sign-In */}
-                  <Button variant="outline" className="w-full bg-[#F5F5F5] flex items-center gap-2 ">
+                  {/* <Button variant="outline" className="w-full bg-[#F5F5F5] flex items-center gap-2 ">
                     <FaGoogle /> Google sign in
-                  </Button>
+                  </Button> */}
 
                   {/* Sign up link */}
                   <p className="text-center text-sm">

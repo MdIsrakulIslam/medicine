@@ -9,6 +9,7 @@ import PatientModal from '../../components/PatienModal';
 import AddPatientModal from '../../components/AddPatientModal';
 import { Patient } from '../redux/pateientsSlice';
 import { CiCalendar } from 'react-icons/ci';
+import Header from '@/components/Header';
 
 export default function PatientsPage() {
   const { patients, totalPatients, recoveredCount, flaggedCount, activeCount } = useSelector((state: RootState) => state.patients);
@@ -43,18 +44,19 @@ export default function PatientsPage() {
     <div className="flex min-h-screen ">
       <Sidebar />
       
-      <div className="flex-1 p-6 bg-gray-50">
-        {/* Header */}
-        <div className=" p-4 bg-white mb-6">
+      <div className="flex-1 p-6 ">
+        <Header/> 
+        {/* <div className=" p-4 bg-white mb-6">
           <div className="flex justify-between items-start">
             <div>
               <h1 className="text-xl font-semibold">Hi Rashed Khan</h1>
               <p className="text-sm text-gray-500">Welcome back! Here's what's happening with your Lamare mobile app.</p>
             </div>
            </div>
-        </div>
+        </div> */}
 
-        {/* Patient Management Header */}
+       <div className='bg-gray-50 p-6'>
+         {/* Patient Management Header */}
         <div className=" p-4 mb-6 ">
           <div className="flex justify-between items-center">
             <div>
@@ -178,6 +180,7 @@ export default function PatientsPage() {
             </tbody>
           </table>
         </div>
+       </div>
 
        
       </div>

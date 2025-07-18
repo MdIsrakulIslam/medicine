@@ -169,9 +169,9 @@ const Signup = () => {
                   </Button>
 
                   {/* Google sign in */}
-                  <Button variant="outline" className="w-full flex items-center gap-2 bg-[#F5F5F5]">
+                  {/* <Button variant="outline" className="w-full flex items-center gap-2 bg-[#F5F5F5]">
                     <FaGoogle /> Google sign in
-                  </Button>
+                  </Button> */}
 
                   {/* Sign in link */}
                   <p className="text-center text-sm">

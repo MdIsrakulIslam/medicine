@@ -7,7 +7,7 @@ export default function Notifications({ logs }: { logs: any[] }) {
       <hr />
       <ul className="text-sm pt-6">
         {logs.map((log, idx) => (
-          <li key={idx} className="py-3  text-gray-600">
+          <li key={idx} className="py-4  text-gray-600">
             <span className={`inline-block w-2 h-2 rounded-full mr-2 ${log.type === 'flag' ? 'bg-red-500' : 'bg-blue-500'}`}></span>
             {log.message}
            

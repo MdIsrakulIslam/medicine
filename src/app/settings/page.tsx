@@ -1,5 +1,6 @@
 'use client';
 
+import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import Image from "next/image";
 import { useState } from "react";
@@ -14,19 +15,21 @@ export default function SettingsPage() {
       <Sidebar />
 
       <main className="flex-1 p-6 ">
-        {/* Header */}
-        <div className="flex justify-between items-center mb-8">
+       <  Header></  Header>
+        {/* <div className="flex justify-between items-center mb-8 -mt-3.5  ">
           <div>
             <h1 className="text-xl font-bold">Hi Rashed Khan</h1>
-            <p className="text-gray-600 text-sm">Welcome back! Here's what’s happening with your Lamare mobile app.</p>
+            <p className="text-gray-600 text-sm pb-3 ">Welcome back! Here's what’s happening with your Lamare mobile app.</p>
+             <hr/>
           </div>
-          
-        </div>
+           
+        </div> */}
+      
 
         {/* Settings Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 bg-[#f9fafb]">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 bg-[#f9fafb] p-6">
           {/* Left Side - Personal Info */}
-          <div className="col-span-2 bg-white rounded-lg p-6 shadow">
+          <div className="col-span-2 bg-[#f9fafb] p-6 ">
             <h2 className="text-xl font-semibold mb-4">Settings</h2>
 
             <div className="border p-4 rounded-lg">

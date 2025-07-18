@@ -17,6 +17,7 @@ export default function StatCard({ title, count, change, color }: StatCardProps)
     if (title.toLowerCase().includes("flagged")) {
       return (
         <div className="bg-red-100 text-red-500 p-2 rounded">
+          
           <FiAlertTriangle size={24} />
         </div>
       );

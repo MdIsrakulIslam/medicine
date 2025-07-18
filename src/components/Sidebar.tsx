@@ -24,13 +24,13 @@ const Sidebar = () => {
 
   return (
     <aside className="w-60 bg-white shadow min-h-screen p-4">
-      <div className="text-xl font-bold mb-6 text-blue-600">🏥 LAMARE</div>
+      <div className="text-xl font-bold mb-6 ">LAMARE</div>
       <hr />
       <ul className="space-y-4 text-gray-700 mt-4">
         {navLinks.map(({ href, label, icon }) => (
           <li key={href}>
             <a href={href}>
-              <span className={`flex items-center gap-2 font-semibold cursor-pointer ${pahtname === href ? 'text-blue-600' : ''}`}>
+              <span className={`flex items-center gap-2 font-semibold cursor-pointer ${pahtname === href ? 'bg-[#E9EFFC] p-2 rounded' : ''}`}>
                 {icon}{label}
               </span>
             </a>
