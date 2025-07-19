@@ -66,7 +66,7 @@ export default function PatientsPage() {
             <div className=" flex items-center gap-2">
               <div>
                 
-              <p className=" text-blck  border-2 px-4 py-2 rounded-md hover:bg-blue-700 flex items-center gap-2"> <CiCalendar />January 2025</p>
+              <p className=" text-blck  border-2 px-4 py-2 rounded-md hover:bg-blue-700 hover:text-white flex items-center gap-2"> <CiCalendar />January 2025</p>
               </div>
               <div className="flex items-center gap-4">
                 <button 

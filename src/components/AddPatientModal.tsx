@@ -33,6 +33,9 @@ export default function AddPatientModal({ isOpen, onClose }: AddPatientModalProp
       moodLevel: 5
     };
     
+      //   Show patient data in the console
+     console.log("New Patient Data:", newPatient);
+
     dispatch(addPatient(newPatient));
     
     // Reset form
@@ -58,8 +61,8 @@ export default function AddPatientModal({ isOpen, onClose }: AddPatientModalProp
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-white bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 w-full max-w-md mx-4 shadow-xl">
+    <div className="fixed inset-0  bg-opacity-40 backdrop-blur-sm flex items-center justify-center z-50">
+      <div className="bg-white  rounded-lg p-6 w-full max-w-md mx-4 shadow-xl">
         <div className="flex justify-between items-center mb-4 ">
           <h3 className="text-lg font-semibold">Add New Patient</h3>
           <button
@@ -72,7 +75,7 @@ export default function AddPatientModal({ isOpen, onClose }: AddPatientModalProp
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-black mb-1">
               Full Name
             </label>
             <input
