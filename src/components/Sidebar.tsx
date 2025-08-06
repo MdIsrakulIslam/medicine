@@ -30,7 +30,7 @@ const Sidebar = () => {
         {navLinks.map(({ href, label, icon }) => (
           <li key={href}>
             <a href={href}>
-              <span className={`flex items-center gap-2 font-semibold cursor-pointer ${pahtname === href ? 'bg-[#E9EFFC] p-2 rounded' : ''}`}>
+              <span className={`flex items-center gap-2 font-semibold cursor-pointer ${pahtname === href ? 'bg-[#E9EFFC] p-2 rounded-xl' : ''}`}>
                 {icon}{label}
               </span>
             </a>

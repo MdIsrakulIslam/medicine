@@ -54,8 +54,8 @@ const initialState: PatientsState = {
     },
     {
       id: '3',
-      name: 'Sarah Johnson',
-      email: 'sarah.johnson3@email.com',
+      name: 'toni',
+      email: 'israk.johnson3@email.com',
       phone: '+1 (555) 123-4569',
       surgeryType: 'Knee Replacement',
       surgeryDate: '2024-01-15',

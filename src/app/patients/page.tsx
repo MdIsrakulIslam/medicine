@@ -88,7 +88,7 @@ export default function PatientsPage() {
               <input
               
                 type="text"
-                placeholder="Search by name..."
+                placeholder="Search by name or email..."
                 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -129,8 +129,8 @@ export default function PatientsPage() {
         </div>
 
         {/* Patients Table */}
-        <div className="bg-white rounded-lg shadow">
-          <table className="w-full">
+        <div className="bg-white overflow-x-auto rounded-lg shadow">
+          <table className=" min-w-[700px] w-full">
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">Name</th>
