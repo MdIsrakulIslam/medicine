@@ -16,10 +16,13 @@ export default function StatCard({ title, count, change, color }: StatCardProps)
   const renderIcon = () => {
     if (title.toLowerCase().includes("flagged")) {
       return (
-        <div className="bg-red-100 text-red-500 p-2 rounded">
+      <div>
+        
+          <div className="bg-red-100 text-red-500 p-2 rounded">
           
           <FiAlertTriangle size={24} />
         </div>
+      </div>
       );
     }
     if (title.toLowerCase().includes("healthcare")) {
@@ -44,12 +47,14 @@ export default function StatCard({ title, count, change, color }: StatCardProps)
   };
 
   return (
-    <div className="bg-white rounded-xl shadow p-4 flex justify-between items-center">
+    <div className="bg-white rounded-xl shadow  flex justify-between items-center p-10">
       <div>
+      
         <p className="text-sm text-gray-500">{title}</p>
         <h3 className="text-2xl font-bold">{count}</h3>
         <p className={`text-sm ${color}`}>{change}</p>
       </div>
+      
       {renderIcon()}
     </div>
   );

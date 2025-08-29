@@ -49,7 +49,7 @@ export default function ProfileModal({
 
           <div className="">
             <div className="flex flex-row space-y-6 gap-5 ">
-            <div className="border-t pt-4">
+            <div className=" pt-4">
               <h5 className="font-medium mb-3">Contact Information</h5>
               <div className="space-y-2">
                 <div className="flex items-center space-x-2 text-sm text-[#4B5563]">
@@ -71,7 +71,7 @@ export default function ProfileModal({
               </div>
             </div>
 
-            <div className="border-t pt-4">
+            <div className=" pt-4">
               <h5 className="font-medium mb-3">Activity</h5>
               <div className="space-y-2">
                 <div className="flex items-center space-x-2 text-sm text-[#4B5563]">

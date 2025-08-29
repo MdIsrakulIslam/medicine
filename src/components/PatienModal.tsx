@@ -38,7 +38,7 @@ export default function PatientModal({ patient, isOpen, onClose }: PatientModalP
         <div className="flex justify-between items-start mb-4">
           <div>
             <h3 className="text-lg font-semibold">Patient Profile</h3>
-            <div className="flex items-center  gap-2 mt-1">
+            <div className="w-full flex items-center justify-between gap-2 mt-1  ">
               <div className='flex items-center gap-2'>
                <div>
                  <GoPerson className=' border bg-[#DBEAFE] inline-block rounded-full text-3xl text-[#2563EB]' />
@@ -48,7 +48,7 @@ export default function PatientModal({ patient, isOpen, onClose }: PatientModalP
                 <span className="text-gray-600 text-sm">{patient.email}</span>
                </div>
               </div>
-              <span className={`px-2 py-1 flex justify-end rounded-full text-xs ${getStatusColor(patient.status)}`}>
+              <span className={`px-2 py-1  rounded-full text-xs ${getStatusColor(patient.status)}`}>
                 {patient.status}
               </span>
             </div>

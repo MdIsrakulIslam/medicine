@@ -1,8 +1,12 @@
 "use client"
+import { IoIosNotificationsOutline } from "react-icons/io";
 export default function Notifications({ logs }: { logs: any[] }) {
   return (
     <div className="bg-white p-4 shadow rounded-lg ">
-      <h3 className="font-semibold text-gray-700 mb-2">Notifications</h3>
+    <div className="flex justify-between items-center">
+          <h3 className="font-semibold text-gray-700 mb-2">Notifications</h3>
+       <p><IoIosNotificationsOutline className="text-xl"/></p>
+    </div>
       <p className="text-sm pb-6">Recent platform activity</p>
       <hr />
       <ul className="text-sm pt-6">

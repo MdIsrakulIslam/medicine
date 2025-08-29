@@ -2,55 +2,61 @@
 
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
-import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { GoPerson } from "react-icons/go";
 
 export default function SettingsPage() {
   const [adminName, setAdminName] = useState("Rhashed khan");
   const [email, setEmail] = useState("");
+  const [pricingPlans, setPricingPlans] = useState([]); // State for dynamic pricing plans
+
+  useEffect(() => {
+    // Fetch data from your API here using fetch, axios, etc.
+    // Here, I'm using a sample API response as a placeholder
+    fetchPricingPlans();
+  }, []);
+
+  const fetchPricingPlans = async () => {
+    try {
+      // Replace with your API call
+      const response = await fetch('YOUR_API_URL'); // Example API URL
+      const data = await response.json();
+      setPricingPlans(data); // Setting the data from the API response
+    } catch (error) {
+      console.error("Error fetching pricing plans:", error);
+    }
+  };
 
   return (
     <div className="flex min-h-screen">
       <Sidebar />
 
-      <main className="flex-1 p-6 ">
-       <  Header></  Header>
-        {/* <div className="flex justify-between items-center mb-8 -mt-3.5  ">
-          <div>
-            <h1 className="text-xl font-bold">Hi Rashed Khan</h1>
-            <p className="text-gray-600 text-sm pb-3 ">Welcome back! Here's what’s happening with your Lamare mobile app.</p>
-             <hr/>
-          </div>
-           
-        </div> */}
-      
+      <main className="flex-1 p-6">
+        <Header />
 
         {/* Settings Section */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 bg-[#f9fafb] p-6">
           {/* Left Side - Personal Info */}
-          <div className="col-span-2 bg-[#f9fafb] p-6 ">
+          <div className="col-span-2  p-6 rounded-lg shadow">
             <h2 className="text-xl font-semibold mb-4">Settings</h2>
 
-            <div className="border p-4 rounded-lg">
+            <div className="border p-4 rounded-lg bg-white mb-5">
               <h3 className="text-md font-medium mb-2">Personal Information</h3>
               <p className="mb-8">Update your Personal Information</p>
 
               <div className="flex items-center mb-4">
-                  <div>
-                    <GoPerson className=' border bg-[#DBEAFE] inline-block rounded-full text-3xl text-[#2563EB]' />
-                 </div>
+                <div>
+                  <GoPerson className="border bg-[#DBEAFE] inline-block rounded-full text-3xl text-[#2563EB]" />
+                </div>
                 <div className="ml-4 text-sm text-gray-600">
-                    <p className="text-black font-bold">Image</p>
+                  <p className="text-black font-bold">Image</p>
                   JPG, 2MB max. Recommended: 200x200px
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-20">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Admin name
-                  </label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Admin name</label>
                   <input
                     type="text"
                     value={adminName}
@@ -60,9 +66,7 @@ export default function SettingsPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Email
-                  </label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                   <input
                     type="email"
                     value={email}
@@ -72,9 +76,41 @@ export default function SettingsPage() {
                   />
                 </div>
               </div>
-
-              
             </div>
+               {/* Pricing Plans Section */}
+          <div className="bg-white p-6 rounded-lg shadow mb-6">
+            <h3 className="text-md font-medium mb-4">Pricing Plans</h3>
+            <p className="text-sm text-gray-600 mb-4">Manage your pricing tiers and features.</p>
+            <div className="overflow-x-auto">
+              <table className="min-w-full table-auto">
+                <thead>
+                  <tr>
+                    <th className="px-4 py-2 text-sm font-medium text-left">Plan Name</th>
+                    <th className="px-4 py-2 text-sm font-medium text-left">Price</th>
+                    <th className="px-4 py-2 text-sm font-medium text-left">Billing</th>
+                    <th className="px-4 py-2 text-sm font-medium text-left">Status</th>
+                    <th className="px-4 py-2 text-sm font-medium text-left">Updated</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* Map over dynamic pricingPlans data */}
+                  {pricingPlans.map((plan, index) => (
+                    <tr key={index}>
+                      <td className="px-4 py-2 text-sm">{plan.planName}</td>
+                      <td className="px-4 py-2 text-sm">{plan.price}</td>
+                      <td className="px-4 py-2 text-sm">{plan.billing}</td>
+                      <td className="px-4 py-2 text-sm">
+                        <span className={plan.status === "active" ? "text-green-500" : "text-red-500"}>
+                          {plan.status}
+                        </span>
+                      </td>
+                      <td className="px-4 py-2 text-sm">{plan.updated}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
           </div>
 
           {/* Right Side - Change Password */}
@@ -82,37 +118,33 @@ export default function SettingsPage() {
             <h3 className="text-md font-medium mb-4">Change Password</h3>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Current Password
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
                 <input
                   type="password"
                   className="w-full border border-gray-300 rounded-md px-3 py-2"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  New Password
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">New Password</label>
                 <input
                   type="password"
                   className="w-full border border-gray-300 rounded-md px-3 py-2"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Confirm New Password
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Confirm New Password</label>
                 <input
                   type="password"
                   className="w-full border border-gray-300 rounded-md px-3 py-2"
                 />
               </div>
-              <button className="p-2 bg-[#225CE4] text-white py-2 rounded hover:bg-blue-700">
+              <button className="p-2 bg-[#225CE4] text-white py-2 rounded hover:bg-blue-700 cursor-pointer">
                 Update Password
               </button>
             </div>
           </div>
+
+       
         </div>
       </main>
     </div>
