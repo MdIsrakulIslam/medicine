@@ -16,46 +16,43 @@ export default function StatCard({ title, count, change, color }: StatCardProps)
   const renderIcon = () => {
     if (title.toLowerCase().includes("flagged")) {
       return (
-      <div>
-        
-          <div className="bg-red-100 text-red-500 p-2 rounded">
-          
+        <div className="bg-red-100 text-red-500 p-3 rounded-lg">
           <FiAlertTriangle size={24} />
         </div>
-      </div>
       );
     }
     if (title.toLowerCase().includes("healthcare")) {
       return (
-        <div className="bg-green-100 text-green-600 p-2 rounded ">
+        <div className="bg-green-100 text-green-600 p-3 rounded-lg">
           <BsPersonCheckFill size={24} />
         </div>
       );
     }
     if (title.toLowerCase().includes("patient")) {
       return (
-        <div className="bg-blue-100 text-blue-500 p-2 rounded">
+        <div className="bg-blue-100 text-blue-500 p-3 rounded-lg">
           <MdOutlinePersonOutline size={24} />
         </div>
       );
     }
     return (
-      <div className="bg-blue-100 text-blue-500 p-2 rounded">
+      <div className="bg-purple-100 text-purple-500 p-3 rounded-lg">
         <MdOutlinePersonOutline size={24} />
       </div>
     );
   };
 
   return (
-    <div className="bg-white rounded-xl shadow  flex justify-between items-center p-10">
-      <div>
-      
-        <p className="text-sm text-gray-500">{title}</p>
-        <h3 className="text-2xl font-bold">{count}</h3>
-        <p className={`text-sm ${color}`}>{change}</p>
+    <div className="bg-white rounded-xl shadow-sm border border-gray-100 flex justify-between items-center p-6 hover:shadow-md transition-shadow duration-200">
+      <div className="flex-1">
+        <p className="text-sm text-gray-500 mb-1">{title}</p>
+        <h3 className="text-2xl font-bold text-gray-900 mb-1">{count}</h3>
+        <p className={`text-sm font-medium ${color}`}>{change}</p>
       </div>
       
-      {renderIcon()}
+      <div className="ml-4 flex-shrink-0">
+        {renderIcon()}
+      </div>
     </div>
   );
 }

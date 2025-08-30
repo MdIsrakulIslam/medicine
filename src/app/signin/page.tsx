@@ -62,7 +62,7 @@ export default function SignInForm() {
           </div>
 
         {/* Sign In Form */}
-        <div className="rounded-2xl shadow-lg border border-gray-100 p-8">
+        <div className="rounded-2xl  border border-gray-200 p-8">
          
 
           {/* Form */}

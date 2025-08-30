@@ -120,3 +120,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .z-sidebar {
+    z-index: 50;
+  }
+  .z-overlay {
+    z-index: 40;
+  }
+  .z-modal {
+    z-index: 60;
+  }
+}
