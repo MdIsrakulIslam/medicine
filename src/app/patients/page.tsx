@@ -91,7 +91,7 @@ export default function PatientsPage() {
                   placeholder="Search by name or email..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white hover:shadow-sm placeholder-gray-400"
                 />
               </div>
               <p className="text-gray-500 hidden lg:block text-sm whitespace-nowrap">
@@ -100,35 +100,53 @@ export default function PatientsPage() {
             </div>
 
             <div className="flex flex-col lg:flex-row gap-4 w-full lg:w-auto">
-              <select
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                className="w-full lg:w-[400px] px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
-              >
-                <option>All Status</option>
-                <option>Active</option>
-                <option>Recovered</option>
-                <option>Flagged</option>
-              </select>
+              <div className="relative w-full lg:w-[400px]">
+                <select
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white hover:shadow-sm cursor-pointer appearance-none text-gray-700 font-medium"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                    backgroundPosition: 'right 0.75rem center',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: '1.5em 1.5em',
+                    paddingRight: '2.5rem'
+                  }}
+                >
+                  <option>All Status</option>
+                  <option>Active</option>
+                  <option>Recovered</option>
+                  <option>Flagged</option>
+                </select>
+              </div>
 
-              <select
-                value={surgeryTypeFilter}
-                onChange={(e) => setSurgeryTypeFilter(e.target.value)}
-                className="w-full lg:w-[500px] px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
-              >
-                <option value="">All Surgery Types</option>
-                <option value="Knee Replacement">Knee Replacement</option>
-                <option value="Hip Replacement">Hip Replacement</option>
-                <option value="Shoulder Surgery">Shoulder Surgery</option>
-                <option value="Spine Surgery">Spine Surgery</option>
-                <option value="Other">Other</option>
-              </select>
+              <div className="relative w-full lg:w-[500px]">
+                <select
+                  value={surgeryTypeFilter}
+                  onChange={(e) => setSurgeryTypeFilter(e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white hover:shadow-sm cursor-pointer appearance-none text-gray-700 font-medium"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                    backgroundPosition: 'right 0.75rem center',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: '1.5em 1.5em',
+                    paddingRight: '2.5rem'
+                  }}
+                >
+                  <option value="">All Surgery Types</option>
+                  <option value="Knee Replacement">Knee Replacement</option>
+                  <option value="Hip Replacement">Hip Replacement</option>
+                  <option value="Shoulder Surgery">Shoulder Surgery</option>
+                  <option value="Spine Surgery">Spine Surgery</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
 
               <button
                 onClick={clearFilters}
-                className="w-full lg:w-auto px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 whitespace-nowrap flex gap-2 items-center justify-center transition-colors cursor-pointer"
+                className="w-full lg:w-auto px-4 py-3 border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300 whitespace-nowrap flex gap-2 items-center justify-center transition-all duration-200 font-medium text-gray-700 hover:text-gray-900 hover:shadow-sm"
               >
-                <RxCross2 />
+                <RxCross2 className="w-4 h-4" />
                 Clear Filters
               </button>
             </div>

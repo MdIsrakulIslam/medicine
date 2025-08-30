@@ -13,13 +13,14 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false); // State to track if the component is mounted
 
   // Check screen size and manage sidebar state
   useEffect(() => {
     const checkScreenSize = () => {
       const mobile = window.innerWidth < 1024;
       setIsMobile(mobile);
-      
+
       // Auto-open sidebar on desktop, auto-close on mobile
       if (!mobile) {
         setIsSidebarOpen(true);
@@ -27,16 +28,24 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         setIsSidebarOpen(false);
       }
     };
-    
+
     // Initial check
     checkScreenSize();
-    
+
     // Add event listener
     window.addEventListener('resize', checkScreenSize);
-    
+
     // Clean up
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
+
+  // Set mounted to true after initial render
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Only render the layout on the client side
+  if (!mounted) return null;
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);

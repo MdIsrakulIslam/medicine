@@ -38,7 +38,7 @@ export default function PatientModal({ patient, isOpen, onClose }: PatientModalP
         <div className="flex justify-between items-start mb-4">
           <div>
             <h3 className="text-lg font-semibold">Patient Profile</h3>
-            <div className="w-full flex items-center justify-between gap-2 mt-1  ">
+            <div className="w-[400px] flex items-center justify-between gap-2 mt-1  ">
               <div className='flex items-center gap-2'>
                <div>
                  <GoPerson className=' border bg-[#DBEAFE] inline-block rounded-full text-3xl text-[#2563EB]' />

@@ -1,18 +1,22 @@
-import React from "react";
 import { BsPersonCheckFill } from "react-icons/bs";
-import { MdOutlinePersonOutline } from "react-icons/md";
-import { FaUserDoctor } from "react-icons/fa6";
-import { MdReportGmailerrorred } from "react-icons/md";
 import { FiAlertTriangle } from "react-icons/fi";
+import { MdOutlinePersonOutline } from "react-icons/md";
 
 interface StatCardProps {
   title: string;
   count: number;
   change: string;
   color: string;
+  alertMsg?: string;
 }
 
-export default function StatCard({ title, count, change, color }: StatCardProps) {
+export default function StatCard({
+  title,
+  count,
+  change,
+  color,
+  alertMsg,
+}: StatCardProps) {
   const renderIcon = () => {
     if (title.toLowerCase().includes("flagged")) {
       return (
@@ -49,9 +53,13 @@ export default function StatCard({ title, count, change, color }: StatCardProps)
         <h3 className="text-2xl font-bold text-gray-900 mb-1">{count}</h3>
         <p className={`text-sm font-medium ${color}`}>{change}</p>
       </div>
-      
-      <div className="ml-4 flex-shrink-0">
-        {renderIcon()}
+      <div className="flex flex-col justify-end items-end">
+        {alertMsg ? (
+          <h2 className={`text-sm text-red-800 bg-red-100 rounded-lg px-3 -mt-8 mb-2`}>
+            {alertMsg ?? ""}
+          </h2>
+        ) : null}
+        <div className="w-fit ml-4 flex-shrink-0">{renderIcon()}</div>
       </div>
     </div>
   );
