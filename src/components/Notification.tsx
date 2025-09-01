@@ -8,9 +8,9 @@ export default function Notifications({ logs }: { logs: any[] }) {
         <IoIosNotificationsOutline className="text-xl text-gray-500"/>
       </div>
       <p className="text-sm text-gray-500 mb-4">Recent platform activity</p>
-      <hr className="border-gray-200 mb-4" />
+      <hr className="border-gray-200 mb-4 " />
       
-      <div className="space-y-4 max-h-96 overflow-y-auto">
+      <div className="space-y-4 max-h- overflow-y-auto">
         {logs.map((log, idx) => (
           <div key={idx} className="flex items-start gap-3 py-2 border-b border-gray-100 last:border-b-0">
             <span 
@@ -19,7 +19,9 @@ export default function Notifications({ logs }: { logs: any[] }) {
               }`}
             ></span>
             <div className="flex-1 min-w-0">
+                <h1 className=" leading-relaxed">{log.heading}</h1>
               <p className="text-sm text-gray-600 leading-relaxed">{log.message}</p>
+              
               <p className="text-xs text-gray-400 mt-1">{log.time}</p>
             </div>
           </div>

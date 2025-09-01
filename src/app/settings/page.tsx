@@ -55,12 +55,12 @@ export default function SettingsPage() {
     setIsEditingPersonalInfo(false)
   }
 
-  const handlePriceEdit = (index, currentPrice) => {
+  const handlePriceEdit = (index:any, currentPrice:any) => {
     setEditingPriceId(index)
     setTempPrice(currentPrice)
   }
 
-  const handlePriceSave = (index) => {
+  const handlePriceSave = (index:any) => {
     const updatedPlans = [...pricingPlans]
     updatedPlans[index].price = tempPrice
     setPricingPlans(updatedPlans)
@@ -73,7 +73,7 @@ export default function SettingsPage() {
     setTempPrice("")
   }
 
-  const handleStatusToggle = (index) => {
+  const handleStatusToggle = (index:any) => {
     const updatedPlans = [...pricingPlans]
     updatedPlans[index].status = updatedPlans[index].status === "active" ? "inactive" : "active"
     setPricingPlans(updatedPlans)
@@ -109,7 +109,7 @@ export default function SettingsPage() {
                 {!isEditingPersonalInfo ? (
                   <button
                     onClick={() => setIsEditingPersonalInfo(true)}
-                    className="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-800 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+                    className="flex items-center gap-2 px-3 py-1 text-sm text-gray-600 hover:text-gray-800 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors cursor-pointer"
                   >
                     <FiEdit3 className="w-4 h-4" />
                     Edit
@@ -118,14 +118,14 @@ export default function SettingsPage() {
                   <div className="flex gap-2">
                     <button
                       onClick={handlePersonalInfoSave}
-                      className="flex items-center gap-1 px-3 py-1 text-sm text-green-600 hover:text-green-800 border border-green-300 rounded-md hover:bg-green-50 transition-colors"
+                      className="flex items-center gap-1 px-3 py-1 text-sm text-green-600 hover:text-green-800 border border-green-300 rounded-md hover:bg-green-50 transition-colors cursor-pointer"
                     >
                       <FiCheck className="w-4 h-4" />
                       Save
                     </button>
                     <button
                       onClick={handleCancelEdit}
-                      className="flex items-center gap-1 px-3 py-1 text-sm text-red-600 hover:text-red-800 border border-red-300 rounded-md hover:bg-red-50 transition-colors"
+                      className="flex items-center gap-1 px-3 py-1 text-sm text-red-600 hover:text-red-800 border border-red-300 rounded-md hover:bg-red-50 transition-colors cursor-pointer"
                     >
                       <FiX className="w-4 h-4" />
                       Cancel
@@ -217,11 +217,11 @@ export default function SettingsPage() {
                                 />
                                 <button
                                   onClick={() => handlePriceSave(index)}
-                                  className="text-green-600 hover:text-green-800"
+                                  className="text-green-600 hover:text-green-800 cursor-pointer" 
                                 >
                                   <FiCheck className="w-4 h-4" />
                                 </button>
-                                <button onClick={handlePriceCancel} className="text-red-600 hover:text-red-800">
+                                <button onClick={handlePriceCancel} className="text-red-600 hover:text-red-800 cursor-pointer">
                                   <FiX className="w-4 h-4" />
                                 </button>
                               </div>
@@ -230,7 +230,7 @@ export default function SettingsPage() {
                                 <span>{plan.price}</span>
                                 <button
                                   onClick={() => handlePriceEdit(index, plan.price)}
-                                  className="text-gray-400 hover:text-gray-600"
+                                  className="text-gray-400 hover:text-gray-600 cursor-pointer"
                                 >
                                   <FiEdit3 className="w-4 h-4" />
                                 </button>
@@ -250,7 +250,7 @@ export default function SettingsPage() {
                             </span>
                             <button
                               onClick={() => handleStatusToggle(index)}
-                              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer ${
                                 plan.status === "active" ? "bg-blue-600" : "bg-gray-200"
                               }`}
                             >
@@ -347,7 +347,7 @@ export default function SettingsPage() {
 
               <button
                 onClick={handlePasswordChange}
-                className=" bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+                className=" bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors cursor-pointer"
               >
                 Update Password
               </button>

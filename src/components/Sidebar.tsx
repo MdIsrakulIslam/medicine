@@ -192,7 +192,7 @@ const Sidebar = ({
           </button>
         </div>
 
-        <hr className="border-gray-200 mb-4" />
+        <hr className="border-gray-200 mb-4 mt-2 lg:w-[1000px]" />
 
         {/* Navigation Links */}
         <nav className="flex-1">
