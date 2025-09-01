@@ -122,7 +122,7 @@ export default function ProvidersPage() {
             </div>
 
             {/* Table */}
-            <div className="rounded-lg shadow overflow-hidden">
+            {/* <div className="rounded-lg shadow overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full overflow-x-auto">
                   <thead className="bg-gray-50">
@@ -179,7 +179,7 @@ export default function ProvidersPage() {
                   </tbody>
                 </table>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

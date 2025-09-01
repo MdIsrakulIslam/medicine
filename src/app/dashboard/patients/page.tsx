@@ -168,7 +168,7 @@ export default function PatientsPage() {
           </div>
 
              {/* Filters */}
-            <div className="bg-white p-4 rounded-lg shadow mb-6">
+            {/* <div className="bg-white p-4 rounded-lg shadow mb-6">
               <h1 className="p-2">Search</h1>
               <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
                 <div className="flex flex-col md:flex-row gap-4 items-center w-full">
@@ -213,9 +213,9 @@ export default function PatientsPage() {
                   Clear Filters
                 </button>
               </div>
-            </div>
+            </div> */}
           {/* Patients Table */}
-          <div className="bg-white rounded-lg shadow">
+          {/* <div className="bg-white rounded-lg shadow">
             <div className="overflow-x-auto">
               <table className="min-w-full">
                 <thead className="bg-gray-50">
@@ -260,7 +260,7 @@ export default function PatientsPage() {
                 </tbody>
               </table>
             </div>
-          </div>
+          </div> */}
         </div>
         </div>
       </div>
