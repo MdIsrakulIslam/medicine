@@ -208,7 +208,8 @@ export default function PatientsPage() {
             </div>
 
             {/* Desktop table view */}
-            <table className="hidden md:table min-w-full">
+          <div className="overflow-x-auto">
+              <table className="hidden md:table md:min-w-[700px] overflow-x-auto w-full">
               <thead className="bg-gray-50">
                 <tr>
                   <th className="px-4 lg:px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
@@ -274,6 +275,7 @@ export default function PatientsPage() {
                 ))}
               </tbody>
             </table>
+          </div>
           </div>
 
           {/* Empty State */}

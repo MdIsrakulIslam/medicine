@@ -40,7 +40,7 @@ export default function StatCard({
       );
     }
     return (
-      <div className="bg-purple-100 text-purple-500 p-3 rounded-lg">
+      <div className="bg-blue-100 text-blue-500  p-3 rounded-lg">
         <MdOutlinePersonOutline size={24} />
       </div>
     );

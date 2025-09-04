@@ -27,7 +27,7 @@ function Header({ onToggleSidebar, isSidebarExpanded }: HeaderProps) {
               aria-label="Toggle sidebar width"
             >
               <HiMenuAlt3
-                className={`w-5 h-5 text-gray-600 transition-transform duration-200 ${
+                className={`w-5 h-5 text-gray-600 transition-transform duration-200 cursor-pointer ${
                   !isSidebarExpanded ? "rotate-180" : "rotate-0"
                 }`}
               />

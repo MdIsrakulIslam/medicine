@@ -1,10 +1,10 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation"; // Added useRouter
 import { useEffect, useRef, useState } from "react";
 import { BsPersonCheckFill } from "react-icons/bs";
-import { HiMenuAlt3, HiX } from "react-icons/hi";
+import { HiX } from "react-icons/hi";
 import { IoLogOutOutline, IoSettingsOutline } from "react-icons/io5";
 import { LuHouse } from "react-icons/lu";
 import { MdOutlinePersonOutline } from "react-icons/md";
@@ -18,19 +18,21 @@ interface SidebarProps {
 }
 
 // Sidebar Component
-const Sidebar = ({ 
-  isOpen = false, 
-  onToggle, 
-  onClose, 
+const Sidebar = ({
+  isOpen = false,
+  onToggle,
+  onClose,
   isSidebarExpanded: externalExpanded,
-  setSidebarExpanded: setExternalExpanded 
+  setSidebarExpanded: setExternalExpanded,
 }: SidebarProps) => {
   const pathname = usePathname();
+  const router = useRouter(); // Initialize router
   const [internalExpanded, setInternalExpanded] = useState(true);
   const [isMediumScreen, setIsMediumScreen] = useState(false);
-  
+
   // Use external state if provided, otherwise use internal state
-  const isSidebarExpanded = externalExpanded !== undefined ? externalExpanded : internalExpanded;
+  const isSidebarExpanded =
+    externalExpanded !== undefined ? externalExpanded : internalExpanded;
   const setSidebarExpanded = setExternalExpanded || setInternalExpanded;
   const sidebarRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null); // Ref for the overlay
@@ -46,10 +48,25 @@ const Sidebar = ({
     { href: "/settings", label: "Settings", icon: <IoSettingsOutline /> },
   ];
 
+  // Handle logout function
+  const handleLogout = () => {
+    // Clear any authentication tokens or user data from storage
+    localStorage.removeItem('user');
+    localStorage.removeItem('authToken');
+    
+    // Redirect to signin page
+    router.push('/signin');
+    
+    // Close sidebar if on mobile/medium screen
+    if (typeof window !== "undefined" && window.innerWidth < 1024 && onClose) {
+      onClose();
+    }
+  };
+
   // Check screen size on mount and resize
   useEffect(() => {
     const checkScreenSize = () => {
-      if (typeof window !== 'undefined') {
+      if (typeof window !== "undefined") {
         setIsMediumScreen(window.innerWidth >= 768 && window.innerWidth < 1024);
       }
     };
@@ -58,13 +75,13 @@ const Sidebar = ({
     checkScreenSize();
 
     // Add event listener
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       window.addEventListener("resize", checkScreenSize);
     }
 
     // Clean up
     return () => {
-      if (typeof window !== 'undefined') {
+      if (typeof window !== "undefined") {
         window.removeEventListener("resize", checkScreenSize);
       }
     };
@@ -74,10 +91,10 @@ const Sidebar = ({
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
-      
+
       // Only close if we're on mobile/medium screens and sidebar is open
       if (
-        typeof window !== 'undefined' &&
+        typeof window !== "undefined" &&
         window.innerWidth < 1024 &&
         isOpen &&
         sidebarRef.current &&
@@ -88,12 +105,12 @@ const Sidebar = ({
       }
     };
 
-    if (isOpen && typeof window !== 'undefined' && window.innerWidth < 1024) {
+    if (isOpen && typeof window !== "undefined" && window.innerWidth < 1024) {
       // Add a small delay to prevent immediate closure
       const timeoutId = setTimeout(() => {
         document.addEventListener("mousedown", handleClickOutside, true);
       }, 100);
-      
+
       return () => {
         clearTimeout(timeoutId);
         document.removeEventListener("mousedown", handleClickOutside, true);
@@ -103,7 +120,7 @@ const Sidebar = ({
 
   // Prevent body scroll when sidebar is open on mobile and medium devices
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       if (isOpen && window.innerWidth < 1024) {
         document.body.style.overflow = "hidden";
       } else {
@@ -112,7 +129,7 @@ const Sidebar = ({
     }
 
     return () => {
-      if (typeof window !== 'undefined') {
+      if (typeof window !== "undefined") {
         document.body.style.overflow = "unset";
       }
     };
@@ -120,7 +137,7 @@ const Sidebar = ({
 
   const handleNavClick = () => {
     // Close sidebar on mobile and medium after navigation
-    if (typeof window !== 'undefined' && window.innerWidth < 1024 && onClose) {
+    if (typeof window !== "undefined" && window.innerWidth < 1024 && onClose) {
       onClose();
     }
   };
@@ -162,20 +179,21 @@ const Sidebar = ({
         {/* Header Section */}
         <div className="flex items-center justify-between mb-6">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 relative flex-shrink-0">
-              <div className="absolute inset-0 bg-blue-500 rounded-tl-full rounded-br-full"></div>
-              <div className="absolute inset-0 bg-green-500 rounded-tr-full rounded-bl-full"></div>
+          <Link href="/">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 relative flex-shrink-0">
+                <div className="absolute inset-0 bg-blue-500 rounded-tl-full rounded-br-full"></div>
+                <div className="absolute inset-0 bg-green-500 rounded-tr-full rounded-bl-full"></div>
+              </div>
+              <span
+                className={`text-xl font-bold text-gray-900 transition-opacity duration-200  ${
+                  !isSidebarExpanded && "opacity-0 lg:opacity-0 hidden"
+                }`}
+              >
+                LAMARE
+              </span>
             </div>
-            <span
-              className={`text-xl font-bold text-gray-900 transition-opacity duration-200 ${
-                !isSidebarExpanded && "opacity-0 lg:opacity-0"
-              }`}
-            >
-              LAMARE
-            </span>
-          </div>
-
+          </Link>
           {/* Close Button for mobile screens only */}
           <button
             className="lg:hidden p-2 rounded-md hover:bg-gray-100 transition-colors"
@@ -206,21 +224,25 @@ const Sidebar = ({
                     onClick={handleNavClick}
                     className={`flex items-center rounded-xl transition-all duration-200 group
                       ${
-                        !isSidebarExpanded 
-                          ? "justify-center p-3" 
-                          : "gap-3 px-3 py-3"
+                        !isSidebarExpanded
+                          ? "justify-center p-3"
+                          : "gap-3 px-4 py-3"
                       }
                       ${
                         isActive
                           ? "bg-[#E9EFFC] text-blue-600"
-                          : "text-black hover:text-blue-500 hover:bg-[#F0F4FF] "
+                          : "text-black hover:text-blue-600 hover:bg-[#F0F4FF]"
                       }
                     `}
                     title={!isSidebarExpanded ? label : undefined}
                   >
-                    <span className={`text-lg flex-shrink-0 ${
-                      !isSidebarExpanded ? "text-xl" : ""
-                    }`}>{icon}</span>
+                    <span
+                      className={`text-lg flex-shrink-0 ${
+                        !isSidebarExpanded ? "text-xl" : ""
+                      }`}
+                    >
+                      {icon}
+                    </span>
                     <span
                       className={`font-semibold transition-all duration-200 ${
                         !isSidebarExpanded
@@ -240,23 +262,22 @@ const Sidebar = ({
         {/* Logout Section */}
         <div className="pt-4 border-t border-gray-200">
           <button
+            onClick={handleLogout} // Added onClick handler
             className={`flex items-center text-gray-600 hover:text-red-500 rounded-xl hover:bg-red-50 transition-all duration-200 w-full
-              ${
-                !isSidebarExpanded 
-                  ? "justify-center p-3" 
-                  : "gap-3 px-3 py-2"
-              }
+              ${!isSidebarExpanded ? "justify-center p-3" : "gap-3 px-3 py-2"}
             `}
             aria-label="Logout"
             title={!isSidebarExpanded ? "Logout" : undefined}
           >
-            <IoLogOutOutline className={`flex-shrink-0 ${
-              !isSidebarExpanded ? "text-xl" : "text-lg"
-            }`} />
+            <IoLogOutOutline
+              className={`flex-shrink-0 ${
+                !isSidebarExpanded ? "text-xl" : "text-lg"
+              }`}
+            />
             <span
-              className={`text-sm transition-all duration-200 ${
-                !isSidebarExpanded 
-                  ? "opacity-0 w-0 overflow-hidden" 
+              className={`text-sm transition-all duration-200 cursor-pointer ${
+                !isSidebarExpanded
+                  ? "opacity-0 w-0 overflow-hidden"
                   : "opacity-100 w-auto"
               }`}
             >

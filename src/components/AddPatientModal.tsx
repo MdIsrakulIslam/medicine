@@ -1,60 +1,64 @@
 // components/AddPatientModal.tsx
 "use client";
 
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addPatient } from '../app/redux/pateientsSlice';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addPatient } from "../app/redux/pateientsSlice";
 
 interface AddPatientModalProps {
   isOpen: boolean;
   onClose: () => void;
-  
 }
 
-export default function AddPatientModal({ isOpen, onClose }: AddPatientModalProps) {
+export default function AddPatientModal({
+  isOpen,
+  onClose,
+}: AddPatientModalProps) {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    surgeryType: '',
-    surgeryDate: '',
-    status: 'Active' as 'Active' | 'Recovered' | 'Flagged'
+    name: "",
+    email: "",
+    phone: "",
+    surgeryType: "",
+    surgeryDate: "",
+    status: "Active" as "Active" | "Recovered" | "Flagged",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const newPatient = {
       ...formData,
-      lastActive: new Date().toISOString().split('T')[0],
+      lastActive: new Date().toISOString().split("T")[0],
       painLevel: 5,
       mobilityLevel: 5,
-      moodLevel: 5
+      moodLevel: 5,
     };
-    
-      //   Show patient data in the console
-     console.log("New Patient Data:", newPatient);
+
+    //   Show patient data in the console
+    console.log("New Patient Data:", newPatient);
 
     dispatch(addPatient(newPatient));
-    
+
     // Reset form
     setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      surgeryType: '',
-      surgeryDate: '',
-      status: 'Active'
+      name: "",
+      email: "",
+      phone: "",
+      surgeryType: "",
+      surgeryDate: "",
+      status: "Active",
     });
-    
+
     onClose();
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData(prev => ({
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -136,18 +140,34 @@ export default function AddPatientModal({ isOpen, onClose }: AddPatientModalProp
             </select>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Surgery Date
-            </label>
-            <input
-              type="date"
-              name="surgeryDate"
-              value={formData.surgeryDate}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 "
-              required
-            />
+          <div className="flex gap-4">
+            <div className="w-full">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Surgery Date
+              </label>
+              <input
+                type="date"
+                name="surgeryDate"
+                value={formData.surgeryDate}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 "
+                required
+              />
+            </div>
+
+            <div className="w-full">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Surgery Date
+              </label>
+              <input
+                type="date"
+                name="surgeryDate"
+                value={formData.surgeryDate}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 "
+                required
+              />
+            </div>
           </div>
 
           <div>
@@ -176,7 +196,7 @@ export default function AddPatientModal({ isOpen, onClose }: AddPatientModalProp
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 cursor-pointer" 
+              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 cursor-pointer"
             >
               Add Patient
             </button>
